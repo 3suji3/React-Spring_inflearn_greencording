@@ -1,0 +1,91 @@
+/* css 변수 선언 */
+:root{
+  --primaryColor:green;
+  --errorColor:orange;
+}
+
+html{
+  box-sizing:border-box;
+  /* 박스모델 설정 */
+  /* content-box는 영역의 크기를 지정할때 패딩과 테두리를 제외한 content크기만을 계산 */
+  /* border-box는 영역의 크기를 지정할 때 패딩과 테두리를 포함한 content크기를 계산 */
+  /* 일반적으로 인간은 컨텐츠 크기를 지정할 때 패딩과 테두리도 포함 */
+}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: white;
+}
+/* display:flex를 먹인 태그는 부모태그가 되는 거고 div태그는 자식 태그가 된다. */
+
+#wrapper{
+  width: 420px;
+  box-shadow: 0pxx 4px 14px rgba(0,0,0,0.2);
+}
+
+h2{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.inputGroup{
+  padding: 8px 12px;
+}
+
+.inputGroup label{
+  display: block;
+  padding: 12px 0;
+}
+
+.inputGroup input{
+  display: block;
+  width: 93%;
+  padding:12px;
+  border: 2px solid #e2e2e2;
+  font-size: 16px;
+}
+
+.inputGroup input:focus{
+  outline: none;
+  border-color: #777;
+}
+
+.inputGroup .valid input{
+  border-color:var(--primaryColor);
+  /* .valid는 자바스크립트로 가상의 css선택자를 설정한다. */
+}
+
+.inputGroup .invalid input{
+  border-color:var(--errorColor);
+  visibility: visible;
+}
+
+.inputGroup .helperText{
+  display: block;
+  padding-top: 8px;
+}
+
+.inputGroup .valid .helperText{
+  visibility: hidden;
+}
+
+.inputGroup .invalid .helperText{
+  color:var(--errorColor);
+}
+
+#wrapper button{
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  height: 50px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  background-color:var(--primaryColor);
+  border: 2px solid var(--primaryColor);
+  color:white;
+  cursor: pointer;
+}
+
