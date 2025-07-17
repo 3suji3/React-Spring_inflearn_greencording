@@ -63,7 +63,7 @@ const checkPasswordStrength = (password) => {
     updateHelperText(password,"비밀번호 강도: 강함", true);
     return true;
   } else{
-    updateHelperText(password, "비밀번호는 8자 이상이어야하며 대문자, 소문자, 특수문자를 포함해야합니다.");
+    updateHelperText(password, "비밀번호는 8자 이상이어야하며 대문자, 소문자, 특수문자를 포함해야합니다.",false);
     return false;
   }
 }
@@ -84,7 +84,7 @@ const validatePhoneNumber = (input) => {
     updateHelperText(input,"",true);
     return true;
   }else{
-    updateHelperText(input, "유효한 전화번호를 입력해주세요.(예:010-1234-5678)");
+    updateHelperText(input, "유효한 전화번호를 입력해주세요.(예:010-1234-5678)",false);
     return false;
   }
 }
@@ -103,7 +103,35 @@ const validateForm = () => {
 
 registrationForm.addEventListener('submit',(e)=>{
   e.preventDefault();
+  if(validateForm()==true){
+    console.log("모든 필드가 유효합니다. 즉 사용이 가능합니다.");
+  } else {
+    console.log("위 필드중 일부분이 에러가 터집니다. 유효성 검사 실패")
+  }
   console.log(e);
+})
+
+document.querySelectorAll('input').forEach(input =>{
+  //forEach는 배열안의 데이터를 각각 뽑아오고 싶을 때 이용
+  input.addEventListener('input',()=>{
+    switch(input.id){
+      case 'nickname':
+        checkEmptyInput(input);
+        break;
+      case 'email':
+        validateEmailFormat(input);
+        break;
+      case 'userPassword':
+        checkPasswordStrength(input);
+        break;
+      case 'confirmPassword':
+        validatePasswordMatch(userPassword, confirmPassword);
+        break;
+      case 'phone':
+        validatePhoneNumber(input);
+        break;
+    }
+  })
 })
 
 
