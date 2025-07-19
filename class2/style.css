@@ -1,0 +1,55 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* 테두리를 포함한 모든 태그요소들에 크기를 보여준다.  */
+}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #2c3e50;
+  background-color: #f0f8ff;
+  animation: fadein 1.5s;
+}
+
+@keyframes fadein{
+  from{
+    opacity: 0%;
+  }
+  to{
+    opacity: 100%;
+  }
+}
+
+.container{
+  display: block;
+  text-align: center;
+}
+
+h1{
+  margin-bottom: 0;
+  font-size: 300%;
+  color: #34495e;
+}
+
+.calculator{
+  display: inline-block;
+}
+
+input{
+  box-direction: ltr;
+  /* 입력방향을 왼쪽에서 오른쪽으로 설정 */
+  background-color: #fff;
+  width: 80vW;
+  font-size: 3rem;
+  color: #2c3e50;
+  border: 2px solid #bdc3c7;
+  border-radius: 0.5rem;
+}
+
+table{
+  margin: 0 auto;
+}
