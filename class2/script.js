@@ -1,7 +1,5 @@
 const screen = document.getElementById("screen"); //태그 여러개를 리스트 형태로 담아서 변수로 담음
-const button = document.querySelectorAll("button");
-
-let currentInput = "";
+const buttons = document.querySelectorAll("button");
 
 const operatorRegex = /^(\d+|\*\*|[+\-*/])$/;
 const numberRegex = /[0-9]/g;
@@ -33,3 +31,53 @@ function calculate(operator, numbers){
       return "";
   }
 }
+
+//버튼 클릭 시 동작 처리 함수
+function handleButtonClick(event){
+  event.preventDefault();
+  //새로고침 방지
+  const buttonText = event.target.innerText;
+
+  if(numberRegex.test(buttonText) == true){
+    appendToScreen(buttonText);
+  }else if(operatorRegex.test(buttonText) == true){
+    appendToScreen(buttonText);
+  }
+}
+
+//버튼 클릭 이벤트 리스너 등록 함수
+function initializeButtonListeners(){
+  buttons.forEach((button) => {
+    button.addEventListener("click", handleButtonClick);
+  })
+}
+
+//"=" 버튼 클릭 시 계산 결과를 화면에 표시
+function handleResultClick(){
+  const screenValue = screen.value;
+
+  if(screenValue.includes("+")){
+    const [num1, num2] = screenValue.split("+");
+    screen.value = calculate("+",[num1, num2]);
+  } else if(screenValue.includes("-")){
+    const [num1, num2] = screenValue.split("-");
+    screen.value = calculate("-",[num1, num2]);
+  } else if(screenValue.includes("*")){
+    const [num1, num2] = screenValue.split("*");
+    screen.value = calculate("*",[num1, num2]);
+  } else if(screenValue.includes("/")){
+    const [num1, num2] = screenValue.split("/");
+    screen.value = calculate("/",[num1, num2]);
+  }
+}
+
+//초기화 버튼 클릭 시 화면 초기화
+document.getElementById("resetButton").addEventListener("click",function() {
+  clearScreen();
+});
+
+//"="버튼 클릭 시 계산 실행
+document.getElementById("result").addEventListener("click", handleResultClick)
+
+//계산기 기능 실행
+initializeButtonListeners();
